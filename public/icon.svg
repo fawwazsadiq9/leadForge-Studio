@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="100%" stop-color="#0c0a09" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#f59e0b" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <!-- App Background -->
+  <rect width="512" height="512" rx="115" fill="url(#bgGrad)" />
+  <rect width="504" height="504" x="4" y="4" rx="111" fill="none" stroke="#292524" stroke-width="4" />
+  
+  <!-- Outer Ring Accent -->
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#f59e0b" stroke-opacity="0.15" stroke-width="6" stroke-dasharray="8 8" />
+  
+  <!-- Central Icon Mark: Stylized Forge & Lightning/Spark -->
+  <g filter="url(#glow)">
+    <!-- Shield / Forge Foundation -->
+    <path d="M160 170 C160 170 256 128 256 128 C256 128 352 170 352 170 C352 280 256 350 256 350 C256 350 160 280 160 170 Z" fill="#292524" stroke="url(#goldGrad)" stroke-width="12" stroke-linejoin="round" />
+    
+    <!-- Inner Spark / Star / Arrow -->
+    <path d="M256 168 L276 226 L334 234 L290 272 L304 330 L256 298 L208 330 L222 272 L178 234 L236 226 Z" fill="url(#goldGrad)" />
+    
+    <!-- Dollar / Growth Nodes -->
+    <circle cx="256" cy="254" r="14" fill="#1c1917" />
+  </g>
+
+  <!-- Star Accents -->
+  <circle cx="150" cy="130" r="8" fill="#f59e0b" />
+  <circle cx="362" cy="130" r="8" fill="#f59e0b" />
+  <circle cx="256" cy="400" r="10" fill="#f59e0b" />
+</svg>

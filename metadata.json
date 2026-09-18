@@ -1,0 +1,6 @@
+{
+  "name": "Local Business Lead & Website Studio",
+  "description": "Discovers high-rated businesses on maps without websites, generates complete bespoke websites, and produces $300-$500 proposals and client outreach pitches.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
