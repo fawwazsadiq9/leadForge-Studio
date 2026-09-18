@@ -18,7 +18,7 @@ import { QrCodeGeneratorModal } from './components/QrCodeGeneratorModal';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { PWAInstallModal } from './components/PWAInstallModal';
 import { INITIAL_LEADS, INITIAL_INQUIRIES } from './data/mockLeads';
-import { BusinessLead, SprintStats, ClientInquiry } from './types';
+import { BusinessLead, SprintStats, ClientInquiry, SprintMode } from './types';
 import { Inbox, Mail, MessageSquare, Phone, Calendar, Clock, User, CheckCircle2, DollarSign, Sparkles, Bot } from 'lucide-react';
 
 export default function App() {
@@ -39,9 +39,31 @@ export default function App() {
   const [qrLead, setQrLead] = useState<BusinessLead | null>(null);
   const [isInstallModalOpen, setIsInstallModalOpen] = useState<boolean>(false);
 
-  // 2-Hour Sprint Timer State (7200 seconds = 2 hours)
-  const [sprintSeconds, setSprintSeconds] = useState<number>(7200);
+  // Speed Sprint Mode State (Instant ASAP, 15m, 30m, 60m, 120m)
+  const [sprintMode, setSprintMode] = useState<SprintMode>('instant');
+  const [sprintSeconds, setSprintSeconds] = useState<number>(0);
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(true);
+
+  // Handle sprint mode selection
+  const handleSelectSprintMode = (mode: SprintMode) => {
+    setSprintMode(mode);
+    if (mode === 'instant') {
+      setSprintSeconds(0);
+      setIsTimerRunning(false);
+    } else if (mode === '15min') {
+      setSprintSeconds(900);
+      setIsTimerRunning(true);
+    } else if (mode === '30min') {
+      setSprintSeconds(1800);
+      setIsTimerRunning(true);
+    } else if (mode === '60min') {
+      setSprintSeconds(3600);
+      setIsTimerRunning(true);
+    } else if (mode === '120min') {
+      setSprintSeconds(7200);
+      setIsTimerRunning(true);
+    }
+  };
 
   // Sprint Timer Countdown effect
   useEffect(() => {
@@ -68,6 +90,7 @@ export default function App() {
     dealsClosed: leads.filter((l) => l.status === 'won').length,
     secondsRemaining: sprintSeconds,
     isRunning: isTimerRunning,
+    mode: sprintMode,
   };
 
   const handleToggleTimer = () => {
@@ -75,8 +98,12 @@ export default function App() {
   };
 
   const handleResetTimer = () => {
-    setSprintSeconds(7200);
-    setIsTimerRunning(true);
+    if (sprintMode === '15min') setSprintSeconds(900);
+    else if (sprintMode === '30min') setSprintSeconds(1800);
+    else if (sprintMode === '60min') setSprintSeconds(3600);
+    else if (sprintMode === '120min') setSprintSeconds(7200);
+    else setSprintSeconds(0);
+    setIsTimerRunning(sprintMode !== 'instant');
   };
 
   const handleToggleCurrency = () => {
@@ -168,7 +195,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-stone-100/60 text-stone-900 flex flex-col font-sans selection:bg-amber-500 selection:text-stone-950">
-      {/* Top Header with 2-Hour Timer and Global Controls */}
+      {/* Top Header with Rapid Sprint Controls and Global Controls */}
       <Header
         currentTab={currentTab}
         onTabChange={setCurrentTab}
@@ -177,6 +204,7 @@ export default function App() {
         stats={sprintStats}
         onToggleTimer={handleToggleTimer}
         onResetTimer={handleResetTimer}
+        onSelectSprintMode={handleSelectSprintMode}
         activeBusinessName={activeLead.name}
         totalInquiriesCount={inquiries.length}
         onOpenInstallModal={() => setIsInstallModalOpen(true)}

@@ -18,6 +18,8 @@ import {
   Plus,
   Trash2,
   CheckCircle,
+  Zap,
+  Send,
 } from 'lucide-react';
 import { BusinessLead, ClientInquiry } from '../types';
 import { generateStandaloneHtml } from '../utils/htmlExporter';
@@ -318,6 +320,22 @@ export const WebsiteGeneratorView: React.FC<WebsiteGeneratorViewProps> = ({
             <Download className="w-3.5 h-3.5 text-amber-400" />
             <span className="hidden sm:inline">Download HTML</span>
           </button>
+
+          {lead.whatsapp && (
+            <a
+              id="btn-quick-close-whatsapp"
+              href={`https://wa.me/${lead.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                `Hello ${lead.name}! 👋 I just finished designing the live online storefront demo for your business. You can review all services, reviews, and direct booking features. Can I send you the link to check it out right now?`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm animate-pulse"
+              title="Pitch this generated website directly on WhatsApp in 1 click"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+              <span>Fast Pitch Now</span>
+            </a>
+          )}
         </div>
       </div>
 

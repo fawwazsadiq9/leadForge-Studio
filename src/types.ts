@@ -53,6 +53,8 @@ export interface PricingTier {
   popular?: boolean;
 }
 
+export type SprintMode = 'instant' | '15min' | '30min' | '60min' | '120min';
+
 export interface SprintStats {
   targetRevenueUSD: number;
   achievedRevenueUSD: number;
@@ -62,6 +64,7 @@ export interface SprintStats {
   dealsClosed: number;
   secondsRemaining: number;
   isRunning: boolean;
+  mode?: SprintMode;
 }
 
 export interface ClientInquiry {

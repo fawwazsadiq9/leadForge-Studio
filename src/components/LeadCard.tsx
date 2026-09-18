@@ -14,6 +14,8 @@ import {
   Calculator,
   QrCode,
   Inbox,
+  Zap,
+  Send,
 } from 'lucide-react';
 import { BusinessLead } from '../types';
 
@@ -248,9 +250,27 @@ Proposed Agency Price: ${formatPrice(lead.proposedPrice)}
               className="py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition flex items-center justify-center gap-1"
             >
               <MessageSquare className="w-3 h-3 text-emerald-700" />
-              <span>Pitch Client</span>
+              <span>Pitch Script</span>
             </button>
           </div>
+
+          {/* Instant WhatsApp 1-Click Fast Pitch */}
+          {lead.whatsapp && (
+            <a
+              id={`btn-fast-whatsapp-${lead.id}`}
+              href={`https://wa.me/${lead.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                `Hello ${lead.name}! 👋 I noticed your business has a great ${lead.rating}★ rating on Google Maps (${lead.reviewCount} reviews), but no official website for customers to view your services & book. I already built a complete mobile-friendly website demo for ${lead.name}. Would you like me to send you the private preview link? Flat ${formatPrice(lead.proposedPrice)} turn-key launch if you love it!`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => onUpdateStatus(lead.id, 'pitched')}
+              className="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-xs flex items-center justify-center gap-1.5"
+              title="Instant WhatsApp Pitch with pre-written message"
+            >
+              <Send className="w-3 h-3" />
+              <span>Instant WhatsApp Pitch (Fast 1-Click)</span>
+            </a>
+          )}
 
           {/* 4 Pillars Quick Utility Bar */}
           <div className="grid grid-cols-4 gap-1.5 pt-1">

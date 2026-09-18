@@ -223,7 +223,7 @@ export const LeadExplorer: React.FC<LeadExplorerProps> = ({
             Discover 4.5★+ Businesses on Maps with <span className="text-amber-400 underline decoration-amber-500/40">NO Website</span>
           </h2>
           <p className="text-sm text-stone-300 leading-relaxed">
-            These businesses have established local reputations, high reviews, and loyal customers, but are completely invisible to searchers looking for websites. We extract their profile, build a live working demo in 2 minutes, and pitch them a $300 to $500 turn-key package.
+            These businesses have established local reputations, high reviews, and loyal customers, but are completely invisible to searchers looking for websites. Generate instant working website demos, send 1-click WhatsApp pitches, and close turn-key deals as fast as possible.
           </p>
         </div>
 
